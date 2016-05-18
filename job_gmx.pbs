@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#PBS -N marty_gmxequil
+#PBS -l nodes=1:ppn=8
+#PBS -j oe
+#PBS -q default
+
+cd $PBS_O_WORKDIR
+cat $PBS_NODEFILE > nodefile.txt
+
+# First run equilibration.
+/home/marty/bin/gmx_run.sh -b -i exp.pdb -f charmm
+
+# Move log file to avoid errors and then run production.
+mv gmx_run.log gmx_run-equil.log
+/home/marty/bin/gmx_run.sh -r -i out -o prod

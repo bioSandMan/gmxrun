@@ -1,0 +1,36 @@
+integrator              =  md
+dt                      =  0.005
+nsteps                  =  200000  ; total 1 000 ps
+
+nstlog                  =  200
+nstenergy               =  200
+nstxout                 =  200
+nstxout-compressed      =  200
+nstvout                 =  200
+nstfout                 =  0
+nstcalcenergy           =  0
+
+nstlist                 =  10
+pbc                     =  xyz
+rlist                   =  1.2
+cutoff-scheme           =  verlet
+
+coulombtype             =  PME
+rcoulomb                =  1.2
+vdwtype                 =  Cut-off
+vdw-modifier            =  Potential-shift-Verlet
+rvdw                    =  1.2
+
+constraints             =  all-bonds
+constraint_algorithm    =  lincs
+lincs_order             =  8
+
+tcoupl                  =  v-rescale
+tc_grps                 =  Protein  Non-Protein
+tau_t                   =  0.1        0.1
+ref_t                   =  300        300
+
+pcoupl                  =  Berendsen
+tau_p                   =  1.0
+compressibility         =  4.5e-5
+ref_p                   =  1.01325  ;1 atm
